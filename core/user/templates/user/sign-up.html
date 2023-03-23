@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<main class="main">
+    <section class="top">
+        <div class="container">
+            <div class="main__inner">
+                <form class="sign-up" id="sign-up-form" method="POST">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                            <strong>{{ field|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <h2 class="sign-up__sub-title">
+                        Sign-up
+                    </h2>
+                    <div class="sign-up__inner">
+                        <div class="form__inner">
+                            <label class="form-input" for="">First-name</label>
+                            {{form.first_name}}
+                        </div>
+                        <div class="form__inner">
+                            <label class="form-input" for="">Last-name</label>
+                            {{form.last_name}}
+                        </div>
+                    </div>
+                    <div class="form__inner">
+                        <label class="form-input">E-mail</label>
+                        {{form.email}}
+                    </div>
+                    <div class="form__inner">
+                        <label class="form-input">Username</label>
+                        {{form.username}}
+                    </div>
+                    <div class="form__inner">
+                        <label class="form-input">Password</label>
+                        {{form.password1}}
+                    </div>
+                    <div class="form__inner">
+                        <label class="form-input">Retype Password</label>
+                        {{form.password2}}
+                    </div>
+                    <div class="form__inner">
+                        <label class="form-input">Birthday</label>
+                        {{ form.birthday }}
+                    </div>
+                    <div class="">
+                        <label class="form-input">Are You an Employer ?</label>
+                        {{form.is_employer}}
+                    </div>
+                </form>
+                <button class="sign-up-main__button mb-5" type="submit" form="sign-up-form">
+                    Agree and Create Account
+                </button>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
